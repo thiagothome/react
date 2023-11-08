@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <hr>
+  <p>Total: <span id="total"></span> </p>
+  <p>Preco: <span id="preco"></span></p>
+  <button>Comprar JS</button>
+
+  <!-- Ambos exemplos atualizam os valores após o clique no botão -->
+  <!--Exmplo JS -->
+  <script type="application/javascript">
+    const total = document.querySelector('#total');
+    const preco = document.querySelector('#preco');
+    const btn = document.querySelector('button');
+
+    function atualizarDom(){
+      total.innerText ++;
+      preco.innerText = total.innerText * 250
+    }
+    
+    atualizarDom();
+
+    function comprarJs(){
+      atualizarDom();
+    }
+
+    btn.addEventListener("click", comprarJs)
+
+  </script>
+
+
+  <!--Exmplo React -->
+  <script type="text/babel">
+
+    const BtnComprar = () => {
+      const [count, setCount] = React.useState(0);
+
+      return <div>
+        <button onClick={() => setCount(count + 1)}>Comprar React: R$ {150}</button>
+        <p>Total: {count}</p>
+        <p>Preço: {count * 150}</p>
+      </div>
+    }
+
+    const App = () => {
+      return <div>
+        <BtnComprar />
+      </div>
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+  </script>
+</body>
+
+</html>
